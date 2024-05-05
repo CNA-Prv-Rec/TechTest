@@ -18,10 +18,11 @@ public class Geolocator
             var response = client.Execute(request);
 
             var dictionary = JsonConvert.DeserializeObject<IDictionary>(response.Content);
-            foreach (var key in dictionary.Keys)
-            {
-                strIpLocation += key.ToString() + ": " + dictionary[key] + "\r\n";
-            }
+        
+            // I need to test/debug this to make sure I get what I want here. I'm going to get a whole load of bumpf in addition to geolocation, 
+            // and so will need to get the correct dictionary key for the geolocation
+            strIPLocation = dictionary["latitude"] + "," + dictionary["longitude"];
+
             return strIpLocation;
     
     }
